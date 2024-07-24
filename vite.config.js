@@ -1,14 +1,11 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
-
-//elelments-plus按需引入
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-
-// https://vitejs.dev/config/
+// 导入对应包
+import ElementPlus from 'unplugin-element-plus/vite'
 export default defineConfig({
   plugins: [
     vue(),
@@ -16,13 +13,19 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
-    }),
+      resolvers: [ElementPlusResolver({importStyle:'sass'})],//设置语言为sass
+    })
   ],
   resolve: {
-    // 实际的路径转换
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "@/styles/element/index.scss" as *;`,
+      }
     }
   }
 })
