@@ -2,7 +2,8 @@
 </script>
 
 <template>
-  <el-button type="primary">按钮</el-button>
+  <!--一级路由出口组件-->
+  <RouterView />
 </template>
 
 <style scoped>
