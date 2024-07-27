@@ -20,6 +20,8 @@ onMounted(() => {
     <LayoutNav />
     <LayoutHeader />
     <!--二级路由出口-->
+    <!-- 添加key 破坏复用机制 强行销毁重建实例 -->
+    <!-- <RouterView :key="$route.fullPath"/> -->
     <RouterView />
     <LayoutFooter />
 </template>
