@@ -9,7 +9,6 @@ export const lazyPlugin = {
             mounted(el, binding) {
                 //el: 指令绑定的元素 img
                 //bingding:binding.value 指令等于号后面的值，这里是图片地址url
-                console.log(el, binding.value)
                 const { stop } = useIntersectionObserver(
                     el,
                     ([{ isIntersecting }]) => {
