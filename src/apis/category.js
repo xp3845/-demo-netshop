@@ -5,7 +5,7 @@ export function getCategoryAPI(id) {
         url: '/category',
         params:{
             id
-        }
+        } //es6 简写 id:id 可以简写为id
     })
 }
 
