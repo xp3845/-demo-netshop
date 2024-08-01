@@ -31,5 +31,9 @@ export default defineConfig({
         `,
       }
     }
+  },
+  server:{
+    open: true,
+    browser: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
   }
 })
