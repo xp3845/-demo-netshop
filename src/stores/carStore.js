@@ -17,9 +17,18 @@ export const useCartStore = defineStore('cart', () => {
             carlist.value.push(goods)
         }
     }
+    //删除购物车
+    const delCart = (skuId) => {
+    //方法1 找到删除的下标值，然后splic
+    //方法2 使用数组的过滤方法，然后filter
+    const idx = carlist.value.findIndex((item) => item.skuId === skuId)
+    carlist.value.splice(idx,1)
+
+    }
     return {
         carlist,
-        addCart
+        addCart,
+        delCart
     }
 },{
     persist:true
