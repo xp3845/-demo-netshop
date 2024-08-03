@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router'
 const userStore = useUserStore()
 const router = useRouter()
 const confirm = () => {
-  console.log('用户要退出登录')
   //退出登录业务逻辑实现
   //1.清除用户信息 触发action
   userStore.clearUserInfo()
