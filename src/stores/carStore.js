@@ -31,13 +31,21 @@ export const useCartStore = defineStore('cart', () => {
     const allCount = computed(() => carlist.value.reduce((a, c) => a + c.count, 0))
     //逻辑类似，将原来的数量累加逻辑变为 单价*数量=总价格 
     const allPrice = computed(() => carlist.value.reduce((a, c) => a + c.count*c.price, 0))
+
+    //单选功能
+    const singleCheck = (skuId,selected) =>{
+        //通过skuId找到要修改的那一项，然后修改它的selected属性
+        const item =carlist.value.find((item) => item.skuId === skuId)
+        item.selected = selected
+    }
+
     return {
         carlist,
         addCart,
         delCart,
         allCount,
-        allPrice
-
+        allPrice,
+        singleCheck
     }
 },{
     persist:true
