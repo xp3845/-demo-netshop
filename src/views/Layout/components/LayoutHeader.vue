@@ -1,5 +1,5 @@
 <script setup>
-import { useCategoryStore } from '@/stores/category'
+import { useCategoryStore } from '@/stores/categoryStore'
 import { RouterLink } from 'vue-router'
 import HeaderCart from './HeaderCart.vue'
 
