@@ -50,6 +50,11 @@ export const useCartStore = defineStore('cart', () => {
         }
     }
 
+    //清除购物车
+    const clearCart = () => {
+        carlist.value = []
+    }
+
     //计算属性
     //1.总数量 2.总价格 3.已选择数量 4.已选择总价
     //reduce用于将数组长度缩减为1，初始值0，a为累加器，用于保存累加结果，c为当前元素，最终返回累加和
@@ -81,6 +86,7 @@ export const useCartStore = defineStore('cart', () => {
         carlist,
         addCart,
         delCart,
+        clearCart,
         allCount,
         allPrice,
         selectedCount,
