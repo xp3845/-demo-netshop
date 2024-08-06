@@ -1,4 +1,5 @@
 //封装购物车模块
+import { all } from 'axios'
 import {defineStore} from 'pinia'
 import {computed, ref} from 'vue'
 
@@ -39,13 +40,25 @@ export const useCartStore = defineStore('cart', () => {
         item.selected = selected
     }
 
+    //全选功能
+    const allCheck = (selected) => {
+        //遍历carlist，修改每一项的selected属性为当前全选框状态
+        carlist.value.forEach(item => item.selected = selected)
+    }
+
+    //是否全选
+    //every方法用于判断数组中每一项是否都满足条件(这里判断是否都为true)，返回布尔值
+    const isAll = computed(() => carlist.value.every((item) => item.selected))
+
     return {
         carlist,
         addCart,
         delCart,
         allCount,
         allPrice,
-        singleCheck
+        singleCheck,
+        isAll,
+        allCheck
     }
 },{
     persist:true
