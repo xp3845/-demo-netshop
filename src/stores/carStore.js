@@ -1,5 +1,4 @@
 //封装购物车模块
-import { all } from 'axios'
 import {defineStore} from 'pinia'
 import {computed, ref} from 'vue'
 
@@ -27,12 +26,15 @@ export const useCartStore = defineStore('cart', () => {
     }
 
     //计算属性
-    //1.总数量 2.总价格
+    //1.总数量 2.总价格 3.已选择数量 4.已选择总价
     //reduce用于将数组长度缩减为1，初始值0，a为累加器，用于保存累加结果，c为当前元素，最终返回累加和
     const allCount = computed(() => carlist.value.reduce((a, c) => a + c.count, 0))
     //逻辑类似，将原来的数量累加逻辑变为 单价*数量=总价格 
     const allPrice = computed(() => carlist.value.reduce((a, c) => a + c.count*c.price, 0))
+    //filter方法用于过滤数组，返回满足条件的元素组成的新数组，这里用于筛选出已选中的商品
+    const selectedCount = computed(() => carlist.value.filter((item) => item.selected).reduce((a, c) => a + c.count, 0))
 
+    const selectedPrice = computed(() => carlist.value.filter((item) => item.selected).reduce((a, c) => a + c.count*c.price, 0))
     //单选功能
     const singleCheck = (skuId,selected) =>{
         //通过skuId找到要修改的那一项，然后修改它的selected属性
@@ -56,6 +58,8 @@ export const useCartStore = defineStore('cart', () => {
         delCart,
         allCount,
         allPrice,
+        selectedCount,
+        selectedPrice,
         singleCheck,
         isAll,
         allCheck
